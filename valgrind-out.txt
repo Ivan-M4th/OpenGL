@@ -1,0 +1,1922 @@
+==30823== Memcheck, a memory error detector
+==30823== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==30823== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==30823== Command: ./demo.exe
+==30823== Parent PID: 30725
+==30823== 
+--30823-- 
+--30823-- Valgrind options:
+--30823--    --leak-check=full
+--30823--    --show-leak-kinds=all
+--30823--    --track-origins=yes
+--30823--    --verbose
+--30823--    --log-file=valgrind-out.txt
+--30823-- Contents of /proc/version:
+--30823--   Linux version 4.15.0-55-generic (buildd@lgw01-amd64-038) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.10)) #60~16.04.2-Ubuntu SMP Thu Jul 4 09:03:09 UTC 2019
+--30823-- 
+--30823-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--30823-- Page sizes: currently 4096, max supported 4096
+--30823-- Valgrind library directory: /usr/lib/valgrind
+--30823-- Reading syms from /home/ivan/Bureau/gt-dev/demo.exe
+--30823-- Reading syms from /lib/x86_64-linux-gnu/ld-2.23.so
+--30823--   Considering /lib/x86_64-linux-gnu/ld-2.23.so ..
+--30823--   .. CRC mismatch (computed 10d8ea02 wanted 4fdda1aa)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.23.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--30823--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--30823--   .. CRC mismatch (computed eea41ea9 wanted 2009db78)
+--30823--    object doesn't have a symbol table
+--30823--    object doesn't have a dynamic symbol table
+--30823-- Scheduler: using generic scheduler lock implementation.
+--30823-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==30823== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-30823-by-ivan-on-???
+==30823== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-30823-by-ivan-on-???
+==30823== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-30823-by-ivan-on-???
+==30823== 
+==30823== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==30823== don't want to do, unless you know exactly what you're doing,
+==30823== or are doing some strange experiment):
+==30823==   /usr/lib/valgrind/../../bin/vgdb --pid=30823 ...command...
+==30823== 
+==30823== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==30823==   /path/to/gdb ./demo.exe
+==30823== and then give GDB the following command
+==30823==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=30823
+==30823== --pid is optional if only one valgrind process is running
+==30823== 
+--30823-- REDIR: 0x401cf10 (ld-linux-x86-64.so.2:strlen) redirected to 0x3809e181 (???)
+--30823-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--30823--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--30823--   .. CRC mismatch (computed 2567ccf6 wanted 49420590)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--30823--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--30823--   .. CRC mismatch (computed 0e27c9a8 wanted ac585421)
+--30823--    object doesn't have a symbol table
+==30823== WARNING: new redirection conflicts with existing -- ignoring it
+--30823--     old: 0x0401cf10 (strlen              ) R-> (0000.0) 0x3809e181 ???
+--30823--     new: 0x0401cf10 (strlen              ) R-> (2007.0) 0x04c31020 strlen
+--30823-- REDIR: 0x401b860 (ld-linux-x86-64.so.2:index) redirected to 0x4c30bc0 (index)
+--30823-- REDIR: 0x401ba80 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c320d0 (strcmp)
+--30823-- REDIR: 0x401dc70 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c35270 (mempcpy)
+--30823-- Reading syms from /usr/lib/nvidia-390/libGL.so.390.87
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libGLEW.so.1.13.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libm-2.23.so
+--30823--   Considering /lib/x86_64-linux-gnu/libm-2.23.so ..
+--30823--   .. CRC mismatch (computed d1bcd7c2 wanted c6824701)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.23.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libgcc_s.so.1
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libc-2.23.so
+--30823--   Considering /lib/x86_64-linux-gnu/libc-2.23.so ..
+--30823--   .. CRC mismatch (computed 10016417 wanted 1f868c97)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.23.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /usr/lib/nvidia-390/tls/libnvidia-tls.so.390.87
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/nvidia-390/libnvidia-glcore.so.390.87
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0 ..
+--30823--   .. CRC mismatch (computed 2d6b0194 wanted c4b33c13)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0 ..
+--30823--   .. CRC mismatch (computed b483887a wanted 38c83e44)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libdl-2.23.so
+--30823--   Considering /lib/x86_64-linux-gnu/libdl-2.23.so ..
+--30823--   .. CRC mismatch (computed ca8e05bc wanted c502f875)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libdl-2.23.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libsndio.so.6.1
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2 ..
+--30823--   .. CRC mismatch (computed 1e588ec0 wanted 349ee508)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0 ..
+--30823--   .. CRC mismatch (computed 7bb99cdf wanted 61ad4d32)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXss.so.1.0.0
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libXss.so.1.0.0 ..
+--30823--   .. CRC mismatch (computed ab522b10 wanted 5fc28128)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXxf86vm.so.1.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libwayland-egl.so.1.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libxkbcommon.so.0.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libpthread-2.23.so
+--30823--   Considering /usr/lib/debug/.build-id/b1/7c21299099640a6d863e423d99265824e7bb16.debug ..
+--30823--   .. build-id is valid
+--30823-- Reading syms from /lib/x86_64-linux-gnu/librt-2.23.so
+--30823--   Considering /lib/x86_64-linux-gnu/librt-2.23.so ..
+--30823--   .. CRC mismatch (computed bbc6ed8b wanted 6e62fb7a)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/librt-2.23.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libjson-c.so.2.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libdbus-1.so.3.14.6
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libbsd.so.0.8.2
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0 ..
+--30823--   .. CRC mismatch (computed 19f12a45 wanted d5c3c1e7)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0 ..
+--30823--   .. CRC mismatch (computed 256f5df8 wanted 5d40ac88)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libsystemd.so.0.14.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libwrap.so.0.7.6
+--30823--   Considering /lib/x86_64-linux-gnu/libwrap.so.0.7.6 ..
+--30823--   .. CRC mismatch (computed 34dcf8ad wanted 45219146)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libsndfile.so.1.0.25
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libsndfile.so.1.0.25 ..
+--30823--   .. CRC mismatch (computed e85facfa wanted 5b99df6c)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libasyncns.so.0.3.1
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libselinux.so.1
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/liblzma.so.5.0.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libgcrypt.so.20.0.5
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libnsl-2.23.so
+--30823--   Considering /lib/x86_64-linux-gnu/libnsl-2.23.so ..
+--30823--   .. CRC mismatch (computed 8db6ee4e wanted d3ca6948)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libnsl-2.23.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libFLAC.so.8.3.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libvorbisenc.so.2.0.11
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libresolv-2.23.so
+--30823--   Considering /lib/x86_64-linux-gnu/libresolv-2.23.so ..
+--30823--   .. CRC mismatch (computed 7dfc00ab wanted 4cd5db61)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libresolv-2.23.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libpcre.so.3.13.2
+--30823--   Considering /lib/x86_64-linux-gnu/libpcre.so.3.13.2 ..
+--30823--   .. CRC mismatch (computed 276b70fd wanted 22183252)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libgpg-error.so.0.17.0
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libogg.so.0.8.2
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libogg.so.0.8.2 ..
+--30823--   .. CRC mismatch (computed 79e45162 wanted f32912dd)
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libvorbis.so.0.4.8
+--30823--    object doesn't have a symbol table
+--30823-- REDIR: 0x6049a00 (libc.so.6:strcasecmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6045280 (libc.so.6:strcspn) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x604bcf0 (libc.so.6:strncasecmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x60476f0 (libc.so.6:strpbrk) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6047a80 (libc.so.6:strspn) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x604914b (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6048bb0 (libc.so.6:bcmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x604e3f0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6045b20 (libc.so.6:strncmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6043a80 (libc.so.6:index) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x60491b0 (libc.so.6:memset) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6043cd0 (libc.so.6:strcmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x60d0210 (libc.so.6:__memcpy_chk) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x60473c0 (libc.so.6:strncpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6049850 (libc.so.6:stpcpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6045160 (libc.so.6:strcpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6049330 (libc.so.6:mempcpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6047400 (libc.so.6:rindex) redirected to 0x4c308a0 (rindex)
+--30823-- REDIR: 0x6045720 (libc.so.6:strlen) redirected to 0x4c30f60 (strlen)
+--30823-- REDIR: 0x603e130 (libc.so.6:malloc) redirected to 0x4c2db20 (malloc)
+--30823-- REDIR: 0x604e470 (libc.so.6:__GI_memcpy) redirected to 0x4c32b00 (__GI_memcpy)
+--30823-- REDIR: 0x6043d10 (libc.so.6:__GI_strcmp) redirected to 0x4c31fe0 (__GI_strcmp)
+--30823-- REDIR: 0x6048060 (libc.so.6:__GI_strstr) redirected to 0x4c354d0 (__strstr_sse2)
+--30823-- REDIR: 0x6048860 (libc.so.6:memchr) redirected to 0x4c32170 (memchr)
+--30823-- REDIR: 0x6048630 (libc.so.6:strstr) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x6064070 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4c35460 (strstr)
+--30823-- REDIR: 0x603e4f0 (libc.so.6:free) redirected to 0x4c2ed80 (free)
+--30823-- REDIR: 0x612c970 (libc.so.6:__memset_avx2) redirected to 0x4c344c0 (memset)
+--30823-- REDIR: 0x603ed10 (libc.so.6:calloc) redirected to 0x4c2faa0 (calloc)
+--30823-- REDIR: 0x603e6c0 (libc.so.6:realloc) redirected to 0x4c2fce0 (realloc)
+--30823-- REDIR: 0x6041600 (libc.so.6:posix_memalign) redirected to 0x4c300a0 (posix_memalign)
+--30823-- REDIR: 0x6104980 (libc.so.6:__strcasecmp_avx) redirected to 0x4c31860 (strcasecmp)
+--30823-- REDIR: 0x61079b0 (libc.so.6:__memmove_avx_unaligned) redirected to 0x4c32230 (memcpy@GLIBC_2.2.5)
+--30823-- REDIR: 0x6045b70 (libc.so.6:__GI_strncmp) redirected to 0x4c31710 (__GI_strncmp)
+--30823-- REDIR: 0x6043880 (libc.so.6:strcat) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x60627f0 (libc.so.6:__strcat_sse2_unaligned) redirected to 0x4c30c00 (strcat)
+--30823-- REDIR: 0x6043ab0 (libc.so.6:__GI_strchr) redirected to 0x4c30a00 (__GI_strchr)
+--30823-- REDIR: 0x60458c0 (libc.so.6:strnlen) redirected to 0x4c30ee0 (strnlen)
+--30823-- REDIR: 0x605f9d0 (libc.so.6:__strcpy_sse2_unaligned) redirected to 0x4c31040 (strcpy)
+--30823-- REDIR: 0x6060000 (libc.so.6:__strncpy_sse2_unaligned) redirected to 0x4c31570 (__strncpy_sse2_unaligned)
+--30823-- REDIR: 0x6059570 (libc.so.6:__strcmp_sse2_unaligned) redirected to 0x4c31f90 (strcmp)
+--30823-- REDIR: 0x6050760 (libc.so.6:strchrnul) redirected to 0x4c34da0 (strchrnul)
+--30823-- REDIR: 0x401ddc0 (ld-linux-x86-64.so.2:stpcpy) redirected to 0x4c342c0 (stpcpy)
+--30823-- REDIR: 0x6050550 (libc.so.6:rawmemchr) redirected to 0x4c34dd0 (rawmemchr)
+--30823-- REDIR: 0x6048bf0 (libc.so.6:__GI_memcmp) redirected to 0x4c33b90 (__GI_memcmp)
+--30823-- REDIR: 0x57a01d0 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4c2e080 (operator new(unsigned long))
+--30823-- REDIR: 0x6128430 (libc.so.6:__memcmp_sse4_1) redirected to 0x4c33cd0 (__memcmp_sse4_1)
+--30823-- REDIR: 0x60493b0 (libc.so.6:__GI_mempcpy) redirected to 0x4c34fa0 (__GI_mempcpy)
+--30823-- REDIR: 0x579e320 (libstdc++.so.6:operator delete(void*)) redirected to 0x4c2f1e0 (operator delete(void*))
+--30823-- REDIR: 0x57a0280 (libstdc++.so.6:operator new[](unsigned long)) redirected to 0x4c2e7a0 (operator new[](unsigned long))
+--30823-- REDIR: 0x579e350 (libstdc++.so.6:operator delete[](void*)) redirected to 0x4c2f6e0 (operator delete[](void*))
+--30823-- REDIR: 0x6107ea0 (libc.so.6:__memcpy_avx_unaligned) redirected to 0x4c324a0 (memcpy@@GLIBC_2.14)
+--30823-- REDIR: 0x60d0480 (libc.so.6:__strcpy_chk) redirected to 0x4c34e10 (__strcpy_chk)
+--30823-- REDIR: 0x60ffa90 (libc.so.6:__strncmp_sse42) redirected to 0x4c317f0 (__strncmp_sse42)
+--30823-- REDIR: 0x6060fe0 (libc.so.6:__stpcpy_sse2_unaligned) redirected to 0x4c34120 (__stpcpy_sse2_unaligned)
+--30823-- REDIR: 0x6059520 (libc.so.6:__GI_strncpy) redirected to 0x4c31310 (__GI_strncpy)
+--30823-- REDIR: 0x61045f0 (libc.so.6:__strcspn_sse42) redirected to 0x4c35610 (strcspn)
+==30823== Syscall param writev(vector[...]) points to uninitialised byte(s)
+==30823==    at 0x60B6FFD: ??? (syscall-template.S:84)
+==30823==    by 0xAAF8F28: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==30823==    by 0xAAF931C: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==30823==    by 0xAAF93A4: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==30823==    by 0x83CD54D: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83CDA41: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83B860E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B9B3A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54BA941: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AC1A8: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABF94: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==  Address 0xfa4b873 is 35 bytes inside a block of size 16,384 alloc'd
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83BD722: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B8E04: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABF40: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==  Uninitialised value was created by a stack allocation
+==30823==    at 0x83C8BD0: XStoreColors (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823== 
+--30823-- REDIR: 0x6045ae0 (libc.so.6:strncat) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x60630e0 (libc.so.6:__strncat_sse2_unaligned) redirected to 0x4c30dc0 (strncat)
+--30823-- WARNING: Serious error when reading debug info
+--30823-- When reading debug info from /tmp/.glrcxoea (deleted):
+--30823-- failed to stat64/stat this file
+--30823-- WARNING: Serious error when reading debug info
+--30823-- When reading debug info from /tmp/.glrcxoea (deleted):
+--30823-- failed to stat64/stat this file
+--30823-- REDIR: 0x6048ff0 (libc.so.6:__GI_memmove) redirected to 0x4c347e0 (__GI_memmove)
+--30823-- REDIR: 0x6108240 (libc.so.6:__mempcpy_avx_unaligned) redirected to 0x4c34eb0 (mempcpy)
+--30823-- REDIR: 0x6049890 (libc.so.6:__GI_stpcpy) redirected to 0x4c33f80 (__GI_stpcpy)
+--30823-- REDIR: 0x6104860 (libc.so.6:__strspn_sse42) redirected to 0x4c35670 (strspn)
+--30823-- Reading syms from /lib/x86_64-linux-gnu/libudev.so.1.6.4
+--30823--    object doesn't have a symbol table
+--30823-- REDIR: 0x603eaa0 (libc.so.6:memalign) redirected to 0x4c2ff20 (memalign)
+--30823-- WARNING: Serious error when reading debug info
+--30823-- When reading debug info from /tmp/.gl9RgECs (deleted):
+--30823-- failed to stat64/stat this file
+--30823-- WARNING: Serious error when reading debug info
+--30823-- When reading debug info from /tmp/.gl9RgECs (deleted):
+--30823-- failed to stat64/stat this file
+--30823-- Discarding syms at 0xffea750-0xfffbeca in /lib/x86_64-linux-gnu/libudev.so.1.6.4 due to munmap()
+==30823== 
+==30823== HEAP SUMMARY:
+==30823==     in use at exit: 154,476 bytes in 483 blocks
+==30823==   total heap usage: 9,046,162 allocs, 9,045,679 frees, 794,830,301 bytes allocated
+==30823== 
+==30823== Searching for pointers to 483 not-freed blocks
+==30823== Checked 4,874,904 bytes
+==30823== 
+==30823== 2 bytes in 1 blocks are still reachable in loss record 1 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83E290D: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 2 bytes in 1 blocks are still reachable in loss record 2 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x6045489: strdup (strdup.c:42)
+==30823==    by 0x83DF41F: _XlcResolveLocaleName (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B17: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 7 bytes in 1 blocks are still reachable in loss record 3 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x6045489: strdup (strdup.c:42)
+==30823==    by 0x83E2C2F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 8 bytes in 1 blocks are still reachable in loss record 4 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83F431E: _XimOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 9 bytes in 1 blocks are still reachable in loss record 5 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF32B4F: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4C3C7: pa_log_set_ident (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4C5DD: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4CA6D: pa_log_levelv_meta (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4C694: pa_log_level_meta (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF3B444: pa_config_parse (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF2E3CA: pa_client_conf_load (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEE503: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE7BD: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 12 bytes in 1 blocks are definitely lost in loss record 6 of 116
+==30823==    at 0x4C2E80F: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x402DA3: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 16 bytes in 1 blocks are still reachable in loss record 7 of 116
+==30823==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83E025C: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E07D0: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 16 bytes in 1 blocks are still reachable in loss record 8 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5BA21: pa_queue_push (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5977D: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 16 bytes in 1 blocks are still reachable in loss record 9 of 116
+==30823==    at 0x4C2FFC6: memalign (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x4013007: allocate_and_init (dl-tls.c:603)
+==30823==    by 0x4013007: tls_get_addr_tail (dl-tls.c:791)
+==30823==    by 0xFFF8D71: ???
+==30823==    by 0xFFF9D40: ???
+==30823==    by 0x54C7EE0: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54C852E: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54C482D: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x544AB0B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413434: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 16 bytes in 2 blocks are still reachable in loss record 10 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83E0CB5: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 24 bytes in 1 blocks are still reachable in loss record 11 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DFE87: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28B5: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 24 bytes in 1 blocks are still reachable in loss record 12 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83E9EBF: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 24 bytes in 1 blocks are still reachable in loss record 13 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x86D6F4D: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==30823==    by 0x4EBC8C0: ??? (in /usr/lib/nvidia-390/libGL.so.390.87)
+==30823==    by 0x4EB2AF0: glXQueryExtension (in /usr/lib/nvidia-390/libGL.so.390.87)
+==30823==    by 0x54B7CC6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AA3DE: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AC2EB: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABF94: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 27 bytes in 1 blocks are still reachable in loss record 14 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF594C1: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF59705: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823== 
+==30823== 27 bytes in 1 blocks are still reachable in loss record 15 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B881: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B8F0: pa_queue_push (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5977D: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 28 bytes in 1 blocks are still reachable in loss record 16 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54DC1: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54DF4: pa_packet_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54ED1: pa_packet_new_data (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586C4: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 29 bytes in 1 blocks are still reachable in loss record 17 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF45E11: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF461DE: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF583F0: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823== 
+==30823== 30 bytes in 1 blocks are still reachable in loss record 18 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E04831: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E0491F: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF191A: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE939: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5417221: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 32 bytes in 1 blocks are still reachable in loss record 19 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x88DD626: _dlerror_run (dlerror.c:141)
+==30823==    by 0x88DD087: dlsym (dlsym.c:70)
+==30823==    by 0x4EE559F: ??? (in /usr/lib/nvidia-390/libGL.so.390.87)
+==30823==    by 0x4E884BF: ??? (in /usr/lib/nvidia-390/libGL.so.390.87)
+==30823==    by 0x4010689: call_init.part.0 (dl-init.c:58)
+==30823==    by 0x40107DA: call_init (dl-init.c:30)
+==30823==    by 0x40107DA: _dl_init (dl-init.c:120)
+==30823==    by 0x4000C69: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==30823== 
+==30823== 32 bytes in 1 blocks are still reachable in loss record 20 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57C8A: pa_aupdate_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57574: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57790: pa_memtrap_add (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50CAB: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 32 bytes in 1 blocks are still reachable in loss record 21 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6C0F1: pa_semaphore_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57CAA: pa_aupdate_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57574: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57790: pa_memtrap_add (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50CAB: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 32 bytes in 1 blocks are still reachable in loss record 22 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83D3F5A: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83D46C0: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83D542A: XrmGetStringDatabase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83B1CE3: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83B1F8D: XGetDefault (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x9244059: _XcursorGetDisplayInfo (in /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2)
+==30823==    by 0x92440B8: XcursorSupportsARGB (in /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2)
+==30823==    by 0x9246B30: XcursorNoticeCreateBitmap (in /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2)
+==30823==    by 0x83AC500: XCreatePixmap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83AB340: XCreateBitmapFromData (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B6EE5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 34 bytes in 1 blocks are still reachable in loss record 23 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF64591: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF648C6: pa_tagstruct_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF0F55: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF111B: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 35 bytes in 1 blocks are still reachable in loss record 24 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF55931: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF55AA3: pa_pdispatch_register_reply (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11F0: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 39 bytes in 1 blocks are still reachable in loss record 25 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF30B28: pa_xmemdup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458CD: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4E661: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50B38: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 26 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83BB67B: XInitThreads (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B8DBC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABF40: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 27 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83BB694: XInitThreads (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B8DBC: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABF40: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 28 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DEA8C: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 29 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46B1F: pa_init_i18n (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E02B85: pa_mainloop_new (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE753: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x541712B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 30 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4C426: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4CA6D: pa_log_levelv_meta (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4C694: pa_log_level_meta (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF3B444: pa_config_parse (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF2E3CA: pa_client_conf_load (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEE503: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE7BD: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 31 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF648C6: pa_tagstruct_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF0F55: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF111B: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 32 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54DF4: pa_packet_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54ED1: pa_packet_new_data (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586C4: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 33 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF59705: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 34 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B8F0: pa_queue_push (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5977D: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 35 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF55AA3: pa_pdispatch_register_reply (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11F0: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 36 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF461DE: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF583F0: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 37 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5755F: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57790: pa_memtrap_add (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50CAB: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 38 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57C9F: pa_aupdate_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57574: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF57790: pa_memtrap_add (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50CAB: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 39 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AF43: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF577A3: pa_memtrap_add (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50CAB: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 40 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50B38: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 40 bytes in 1 blocks are still reachable in loss record 41 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6AEE7: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6B71D: pa_static_mutex_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54B9E: pa_once_begin (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D0A: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E0491F: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF191A: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE939: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5417221: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 47 bytes in 5 blocks are still reachable in loss record 42 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DC49F: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 43 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF583F0: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 44 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF583B3: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 45 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF58383: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 46 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5834B: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 47 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF584BA: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 48 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5848B: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 49 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF58457: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 50 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF58418: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 51 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF58310: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 52 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50CC3: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x541712B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 48 bytes in 1 blocks are still reachable in loss record 53 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50BC6: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x541712B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 54 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83C31A3: _XrmInternalStringToQuark (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC7B8: _XlcGetCharSet (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC3A8: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 55 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC749: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 56 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC767: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 57 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC785: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 58 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC7A3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 59 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6F9: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 60 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF719: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 61 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF739: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 62 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF759: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 63 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF779: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 64 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF799: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 65 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF7B9: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 66 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF7D9: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 67 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF7F9: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 68 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF819: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 69 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF839: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 70 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E95A0: _XlcAddUtf8Converters (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF841: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 71 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E95C0: _XlcAddUtf8Converters (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF841: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 72 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E95E0: _XlcAddUtf8Converters (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF841: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 73 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9600: _XlcAddUtf8Converters (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF841: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 74 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9620: _XlcAddUtf8Converters (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF841: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 75 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9640: _XlcAddUtf8Converters (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF841: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 76 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCF1D: _XlcSetConverter (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF841: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 77 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF55C69: pa_pdispatch_register_reply (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11F0: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x541712B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 64 bytes in 1 blocks are still reachable in loss record 78 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50CD7: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x541712B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 88 bytes in 1 blocks are still reachable in loss record 79 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x4C2FDEF: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x5474D5F: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5475033: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54145A8: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413295: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 88 bytes in 1 blocks are still reachable in loss record 80 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x8E18826: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E04A09: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF191A: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE939: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5417221: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 96 bytes in 1 blocks are still reachable in loss record 81 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF598E9: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 142 bytes in 18 blocks are still reachable in loss record 82 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DD4A6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE504: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE60F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE97A: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 152 bytes in 1 blocks are still reachable in loss record 83 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54EB1: pa_packet_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54ED1: pa_packet_new_data (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586C4: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 152 bytes in 1 blocks are still reachable in loss record 84 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54EB1: pa_packet_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54ED1: pa_packet_new_data (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586C4: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5886E: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF171B: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823== 
+==30823== 160 bytes in 2 blocks are still reachable in loss record 85 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83E022E: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E07D0: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20AE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 168 bytes in 1 blocks are still reachable in loss record 86 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DFEB1: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28B5: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 168 bytes in 1 blocks are still reachable in loss record 87 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF64911: pa_tagstruct_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF0F55: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF111B: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x541712B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 168 bytes in 1 blocks are still reachable in loss record 88 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF64911: pa_tagstruct_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF0F55: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF16EB: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 176 bytes in 1 blocks are still reachable in loss record 89 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DFE9E: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28B5: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 216 bytes in 18 blocks are still reachable in loss record 90 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x6045489: strdup (strdup.c:42)
+==30823==    by 0x83DE2E6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE60F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE97A: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 274 bytes in 18 blocks are still reachable in loss record 91 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x6045489: strdup (strdup.c:42)
+==30823==    by 0x83DE45F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE60F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE97A: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 288 bytes in 18 blocks are still reachable in loss record 92 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DD481: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE504: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE60F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE97A: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 456 bytes in 1 blocks are still reachable in loss record 93 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DEA2F: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 633 bytes in 49 blocks are still reachable in loss record 94 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCAEE: _XlcCreateDefaultCharSet (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC672: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 720 bytes in 18 blocks are still reachable in loss record 95 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DE2CE: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE60F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DE97A: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83FF6BF: _XlcDefaultLoader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 776 bytes in 1 blocks are still reachable in loss record 96 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x547503D: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54145A8: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413295: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 800 bytes in 50 blocks are still reachable in loss record 97 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DC871: _XlcAddCharSet (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC682: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 1,028 bytes in 50 blocks are still reachable in loss record 98 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCA84: _XlcCreateDefaultCharSet (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC672: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 1,584 bytes in 33 blocks are still reachable in loss record 99 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF308E6: pa_xmalloc (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF46359: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF315FE: pa_proplist_set (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF6750E: pa_tagstruct_get_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DFA61F: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF58D5E: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B3DA: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 2,048 bytes in 1 blocks are still reachable in loss record 100 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DEB72: _XlcCreateLocaleDataBase (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2B4F: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 2,631 bytes in 50 blocks are still reachable in loss record 101 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DC3DF: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 3,600 bytes in 50 blocks are still reachable in loss record 102 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83DCA42: _XlcCreateDefaultCharSet (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC672: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 4,096 bytes in 1 blocks are still reachable in loss record 103 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83C2FD6: _XrmInternalStringToQuark (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC7B8: _XlcGetCharSet (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC3A8: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B98A5: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 4,096 bytes in 1 blocks are definitely lost in loss record 104 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xFFF8FDF: ???
+==30823==    by 0xFFF9D40: ???
+==30823==    by 0x54C7EE0: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54C852E: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54C482D: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x544AB0B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413434: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 4,096 bytes in 1 blocks are definitely lost in loss record 105 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xFFF8FDF: ???
+==30823==    by 0xFFEEABB: ???
+==30823==    by 0xFFFA103: ???
+==30823==    by 0xFFFA69E: ???
+==30823==    by 0xFFF622F: ???
+==30823==    by 0xFFF6616: ???
+==30823==    by 0xFFEC5F4: ???
+==30823==    by 0x54C7F07: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54C852E: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54C482D: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x544AB0B: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 106 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF64591: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF648C6: pa_tagstruct_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF0F55: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF111B: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 107 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54DC1: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54DF4: pa_packet_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54ED1: pa_packet_new_data (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586C4: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 108 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF594C1: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF59705: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 109 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B881: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B8F0: pa_queue_push (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5977D: pa_pstream_send_packet (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF586E6: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5884B: pa_pstream_send_tagstruct_with_creds (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11D1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 110 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF55931: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF55AA3: pa_pdispatch_register_reply (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF11F0: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF13E1: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF5F2D0: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E042AB: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 111 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF45E11: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF461DE: pa_hashmap_put (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF31015: pa_proplist_sets (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF583F0: pa_init_proplist (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DF1701: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF56140: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF564CA: pa_pdispatch_run (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8DEEFCD: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 112 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF4E661: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF50B38: pa_memimport_get (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF590C8: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF5B493: ??? (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E040B6: pa_mainloop_dispatch (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8E044BB: pa_mainloop_iterate (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE815: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AF0AA: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823== 
+==30823== 4,136 bytes in 1 blocks are still reachable in loss record 113 of 116
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0xAF309AE: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0xAF458C2: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E04831: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0xAF54D21: pa_run_once (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-8.0.so)
+==30823==    by 0x8E0491F: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x8DF191A: ??? (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.19.0)
+==30823==    by 0x54AE939: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5417221: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5413416: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 8,176 bytes in 1 blocks are still reachable in loss record 114 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83C2DC1: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83C3155: _XrmInternalStringToQuark (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC7B8: _XlcGetCharSet (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC3A8: _XlcAddCT (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DC6F3: _XlcInitCTInfo (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E2A02: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E20A2: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E28DB: _XlcCreateLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x84036FF: _XlcUtf8Loader (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83E9EAD: _XOpenLC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83DAD8C: XOpenIM (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823== 
+==30823== 8,240 bytes in 1 blocks are still reachable in loss record 115 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x4C2FDEF: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x54443E2: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x5446D1C: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54BC5DF: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54B9847: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABD68: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823== 
+==30823== 72,704 bytes in 1 blocks are still reachable in loss record 116 of 116
+==30823==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x579C3B5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==30823==    by 0x40106C9: call_init.part.0 (dl-init.c:72)
+==30823==    by 0x40107DA: call_init (dl-init.c:30)
+==30823==    by 0x40107DA: _dl_init (dl-init.c:120)
+==30823==    by 0x4000C69: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==30823== 
+==30823== LEAK SUMMARY:
+==30823==    definitely lost: 8,204 bytes in 3 blocks
+==30823==    indirectly lost: 0 bytes in 0 blocks
+==30823==      possibly lost: 0 bytes in 0 blocks
+==30823==    still reachable: 146,272 bytes in 480 blocks
+==30823==         suppressed: 0 bytes in 0 blocks
+==30823== 
+==30823== ERROR SUMMARY: 6 errors from 4 contexts (suppressed: 0 from 0)
+==30823== 
+==30823== 3 errors in context 1 of 4:
+==30823== Syscall param writev(vector[...]) points to uninitialised byte(s)
+==30823==    at 0x60B6FFD: ??? (syscall-template.S:84)
+==30823==    by 0xAAF8F28: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==30823==    by 0xAAF931C: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==30823==    by 0xAAF93A4: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==30823==    by 0x83CD54D: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83CDA41: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x83B860E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B9B3A: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54BA941: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54AC1A8: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABF94: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==  Address 0xfa4b873 is 35 bytes inside a block of size 16,384 alloc'd
+==30823==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x83BD722: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823==    by 0x54B8E04: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54ABF40: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x54133F6: ??? (in /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.4.0)
+==30823==    by 0x404FCE: gt::doubovik::graphics::initDisplay(char const*, int, int) (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x402A0E: runEngine() (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==    by 0x403843: main (in /home/ivan/Bureau/gt-dev/demo.exe)
+==30823==  Uninitialised value was created by a stack allocation
+==30823==    at 0x83C8BD0: XStoreColors (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==30823== 
+==30823== ERROR SUMMARY: 6 errors from 4 contexts (suppressed: 0 from 0)
